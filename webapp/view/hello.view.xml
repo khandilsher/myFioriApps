@@ -1,0 +1,69 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m"
+	controllerName="demo3.DemoForBinding.controller.hello" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel headerText="{i18n>panel1HeaderText}" class="sapUiResponsiveMargin" width="auto">
+		<content>
+			<Label text="{i18n>firstName}" class="sapUiSmallMargin"/>
+			<Input value="{JSON>/Products/0/firstName}" valueLiveUpdate="true" width="200px" enabled="{/enabled}"/>
+			<Label text="{i18n>lastName}" class="sapUiSmallMargin"/>
+			<Input value="{JSON>/Products/0/lastName}" valueLiveUpdate="true" width="200px" enabled="{/enabled}"/>
+			<CheckBox selected="{JSON>/Products/0/enabled}" text="Enabled"/>
+		</content>
+	</Panel>
+	<Panel headerText="{i18n>panel2HeaderText}" class="sapUiResponsiveMargin" width="auto">
+		<content>
+			<l:HorizontalLayout>
+				<l:VerticalLayout>
+					<Label class="sapUiSmallMargin" text="{i18n>address}:"/>
+					<FormattedText class="sapUiSmallMarginBegin sapUiSmallMarginBottom"
+						htmlText="{JSON>/Products/0/address/street}&lt;br&gt;{JSON>/Products/0/address/zip} {JSON>/Products/0/address/city}&lt;br&gt;{JSON>/Products/0/address/country}"
+						width="200px"/>
+					<Link class="sapUiSmallMarginBegin"
+						href="{ parts: [ 'JSON>/Products/0/firstName', 'JSON>/Products/0/lastName' ], formatter: '.formatMail' }" text="{i18n>sendEmail}"/>
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="{i18n>salesToDate}" class="sapUiSmallMargin"></Label>
+					<Input width="200px" enabled="{JSON>/Products/0/enabled}" description="{JSON>/Products/0/currencyCode}"
+						value="{ parts:[ {path:'JSON>/Products/0/salesToDate'}, {path:'JSON>/Products/0/currencyCode'} ], type:'sap.ui.model.type.Currency', formatOptions:{showMeasure:false} }"/>
+				</l:VerticalLayout>
+			</l:HorizontalLayout>
+		</content>
+	</Panel>
+	<Panel headerText="{i18n>panel3HeaderText}" class="sapUiResponsiveMargin" width="auto">
+		<content>
+			<List headerText="{i18n>productListTitle}" items="{Products>/Products}">
+				<items>
+					<ObjectListItem press=".onItemSelected" type="Active" title="{Products>ProductName}"
+						number="{ parts: [ {path: 'Products>UnitPrice'}, {path: 'JSON>/Products/0/currencyCode'} ], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"
+						numberUnit="{'JSON>/Products/0/currencyCode'}">
+						<attributes>
+							<ObjectAttribute text="{Products>QuantityPerUnit}"/>
+							<ObjectAttribute title="{i18n>stockValue}"
+								text="{ parts: [ {path: 'Products>UnitPrice'}, {path: 'Products>UnitsInStock'}, {path: 'JSON>/Products/0/currencyCode'} ], formatter: '.formatStockValue' }"/>
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List>
+		</content>
+	</Panel>
+	<Panel id="productDetailsPanel" headerText="{i18n>panel4HeaderText}" class="sapUiResponsiveMargin" width="auto">
+    <l:Grid defaultSpan="L3 M6 S12" containerQuery="true">
+        <Label text="{i18n>ProductID}:" />
+        <Input value="{Products>ProductID}" />
+        
+        <Label text="{i18n>ProductName}:" />
+        <Input value="{Products>ProductName}" />
+
+        <Label text="{i18n>QuantityPerUnit}:" />
+        <Input value="{Products>QuantityPerUnit}" />
+        
+        <Label text="{i18n>UnitPrice}:" />
+        <Input value="{Products>UnitPrice}" />
+        
+        <Label text="{i18n>UnitsInStock}:" />
+        <Input value="{Products>UnitsInStock}" />
+        
+        <Label text="{i18n>Discontinued}:" />
+        <CheckBox selected="{Products>Discontinued}" />
+    </l:Grid>    
+  </Panel>
+</mvc:View>

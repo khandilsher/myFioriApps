@@ -1,0 +1,15 @@
+{
+	"Products": [{
+		"firstName": "dilsher",
+		"lastName": "khan",
+		"enabled": "true",
+		"address": {
+			"street": "Dietmar-Hopp-Allee 16",
+			"city": "Walldorf",
+			"zip": "69190",
+			"country": "Germany"
+		},
+		"salesToDate": "12345.6789",
+		"currencyCode": "EUR"
+	}]
+}
