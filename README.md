@@ -1,2 +1,2 @@
 # myFioriApps
-Fiori training
+Fiori training for beginers
