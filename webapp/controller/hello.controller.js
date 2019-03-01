@@ -13,7 +13,7 @@ sap.ui.define([
 		formatMail: function(sFirstName, sLastName) {
 			var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			return mobileLibrary.URLHelper.normalizeEmail(
-				sFirstName + "." + sLastName + "@gmail.com",
+				sFirstName + "." + sLastName + "11@gmail.com",
 				oBundle.getText("mailSubject", [sFirstName]),
 				oBundle.getText("mailBody"));
 		},
